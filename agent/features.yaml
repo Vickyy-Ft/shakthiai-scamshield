@@ -1,0 +1,20 @@
+# Amazon Bedrock AgentCore features for ShakthiAI ScamShield.
+# ./kit deploy reads this and provisions what is enabled.
+
+memory:
+  enabled: false           # set true to remember repeat scam reports across sessions
+  name: scamshieldmemory
+  strategies: [SEMANTIC, USER_PREFERENCE]
+  expiry_days: 30
+
+gateway:
+  enabled: false           # set true to add live URL reputation lookup via web-search connector
+  name: tools
+  authorizer: AWS_IAM
+  targets:
+    - name: websearch
+      type: connector
+      connector: web-search
+    # - name: urlreputation       # future: VirusTotal or URLScan.io via Lambda
+    #   type: lambda-function-arn
+    #   lambda-arn: arn:aws:lambda:us-east-1:111122223333:function:url-reputation

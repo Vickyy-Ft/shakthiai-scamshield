@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ShakthiAI ScamShield 🛡️</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      #080E1C;
+    --panel:   #0F1828;
+    --panel2:  #131F35;
+    --line:    #1E3050;
+    --ink:     #E8EEF8;
+    --mute:    #7B8FAD;
+    --orange:  #FF9900;
+    --green:   #22D48A;
+    --red:     #F05252;
+    --amber:   #F6A623;
+    --blue:    #5B9CF6;
+    --shield:  #4F8EF7;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--ink); font:15px/1.5 Inter, system-ui, sans-serif; min-height:100vh; }
+
+  /* ── Header ── */
+  header {
+    display:flex; align-items:center; gap:14px;
+    padding:14px 24px; border-bottom:1px solid var(--line);
+    background:linear-gradient(90deg,#0C1526 0%,#0F1E38 100%);
+  }
+  .logo { font-size:26px; }
+  .brand { display:flex; flex-direction:column; }
+  .brand h1 { font-size:18px; font-weight:800; letter-spacing:-.01em; }
+  .brand span { font-size:12px; color:var(--mute); }
+  .badge {
+    margin-left:auto; background:#0D2040; border:1px solid var(--shield);
+    color:var(--shield); font-size:11px; font-weight:600; padding:4px 10px;
+    border-radius:99px; letter-spacing:.04em;
+  }
+  .meta { font-size:12px; color:var(--mute); text-align:right; line-height:1.7; }
+
+  /* ── Layout ── */
+  main { display:grid; grid-template-columns:1.15fr 1fr; gap:16px; padding:16px 24px; height:calc(100vh - 62px); }
+  .card {
+    background:var(--panel); border:1px solid var(--line); border-radius:16px;
+    padding:16px; display:flex; flex-direction:column; min-height:0; overflow:hidden;
+  }
+  .card h2 { font-size:12px; font-weight:600; color:var(--mute); text-transform:uppercase; letter-spacing:.1em; margin-bottom:12px; }
+
+  /* ── Chat ── */
+  #log { flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:10px; padding-right:4px; }
+  .msg { padding:11px 14px; border-radius:14px; max-width:90%; line-height:1.5; white-space:pre-wrap; word-break:break-word; }
+  .user { align-self:flex-end; background:#1A2D50; border:1px solid #2A4070; }
+  .bot  { align-self:flex-start; background:#111E35; border:1px solid var(--line); }
+  .bot .t { color:var(--mute); font-size:11px; margin-top:6px; }
+  .bot img { height:110px; border-radius:8px; border:1px solid var(--line); display:block; margin-bottom:6px; }
+
+  /* ── Input bar ── */
+  .input-area { margin-top:12px; }
+  .quick-bar { display:flex; gap:6px; margin-bottom:8px; flex-wrap:wrap; }
+  .q { background:#0C1A30; border:1px solid var(--line); color:var(--mute); font-size:11px;
+       padding:4px 10px; border-radius:99px; cursor:pointer; transition:all .15s; white-space:nowrap; }
+  .q:hover { border-color:var(--shield); color:var(--shield); }
+  form { display:flex; gap:8px; }
+  textarea {
+    flex:1; background:#0A1525; color:var(--ink); border:1px solid var(--line); border-radius:12px;
+    padding:11px 14px; font:14px Inter, sans-serif; resize:none; height:70px; line-height:1.45;
+    transition:border-color .15s;
+  }
+  textarea:focus { outline:none; border-color:var(--shield); }
+  .btn-group { display:flex; flex-direction:column; gap:6px; }
+  button.send { background:var(--orange); color:#0A0E18; border:0; border-radius:10px;
+                padding:0 18px; font:600 14px Inter; cursor:pointer; height:34px; }
+  button.send:hover { filter:brightness(1.1); }
+  button.clip { background:#0C1A30; color:var(--mute); border:1px solid var(--line); border-radius:10px;
+                height:28px; font-size:15px; cursor:pointer; }
+  button.clip:hover { border-color:var(--shield); }
+  .att { display:flex; gap:8px; margin-top:6px; flex-wrap:wrap; }
+  .att img { height:54px; border-radius:8px; border:1px solid var(--line); }
+
+  /* ── Decision panel ── */
+  #dec { flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:12px; padding-right:4px; }
+  .empty { color:var(--mute); font-size:13px; }
+
+  .d { background:#0A1525; border:1px solid var(--line); border-radius:14px; padding:14px; animation:pop .3s ease; }
+  @keyframes pop { from { transform:scale(.97); opacity:0; } to { transform:none; opacity:1; } }
+
+  .d-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+  .d-title { font-size:13px; font-weight:600; }
+  .vtag {
+    font:600 12px 'JetBrains Mono', monospace; padding:3px 10px; border-radius:99px; border:1px solid;
+  }
+  .vtag.allow   { color:var(--green); border-color:var(--green); background:#051A0F; }
+  .vtag.review  { color:var(--amber); border-color:var(--amber); background:#1A1000; }
+  .vtag.block   { color:var(--red);   border-color:var(--red);   background:#200808; }
+  .vtag.proceed { color:var(--green); border-color:var(--green); background:#051A0F; }
+  .vtag.guide   { color:var(--amber); border-color:var(--amber); background:#1A1000; }
+  .vtag.deny    { color:var(--red);   border-color:var(--red);   background:#200808; }
+
+  .bar-row { display:grid; grid-template-columns:130px 1fr 48px; gap:8px; align-items:center; margin:4px 0;
+             font:12px 'JetBrains Mono', monospace; }
+  .bar-row span:first-child { color:var(--mute); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .bar-wrap { height:8px; background:#1A2540; border-radius:99px; overflow:hidden; }
+  .bar-fill { height:100%; border-radius:99px; transition:width .4s ease; }
+
+  .d-meta { margin-top:8px; font:11px 'JetBrains Mono', monospace; color:var(--mute); word-break:break-all; }
+  .d-meta span { display:inline-block; margin-right:10px; }
+
+  .verdict-banner {
+    text-align:center; padding:10px; border-radius:10px; font:700 14px Inter;
+    margin-bottom:8px; letter-spacing:.04em;
+  }
+  .verdict-banner.allow  { background:#051A0F; color:var(--green); border:1px solid var(--green); }
+  .verdict-banner.review { background:#1A1000; color:var(--amber); border:1px solid var(--amber); }
+  .verdict-banner.block  { background:#200808; color:var(--red);   border:1px solid var(--red);   }
+
+  /* ── Footer credit ── */
+  .credit { font-size:11px; color:var(--mute); margin-top:10px; text-align:center; }
+  .credit a { color:var(--mute); }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width:5px; } ::-webkit-scrollbar-track { background:transparent; }
+  ::-webkit-scrollbar-thumb { background:var(--line); border-radius:99px; }
+</style>
+</head>
+<body>
+<header>
+  <span class="logo">🛡️</span>
+  <div class="brand"><h1>ShakthiAI ScamShield</h1><span>Think Before You Click. Stay One Step Ahead.</span></div>
+  <div style="margin-left:auto;display:flex;align-items:center;gap:16px;">
+    <div class="meta" id="meta"></div>
+    <span class="badge">Strands Decider 2B</span>
+  </div>
+</header>
+
+<main>
+  <!-- ── Left: Chat ── -->
+  <section class="card">
+    <h2>🔍 Check a message or URL</h2>
+    <div id="log">
+      <div class="msg bot">
+        👋 Hi! I'm <strong>ShakthiAI ScamShield</strong>.<br><br>
+        Paste a suspicious <strong>SMS, email, WhatsApp message, or URL</strong> and I'll tell you if it's a scam.<br><br>
+        Try one of the examples below, or type your own.
+      </div>
+    </div>
+    <div class="input-area">
+      <div class="quick-bar">
+        <span class="q" onclick="prefill('URGENT: Your HDFC Bank account will be blocked. Verify KYC at http://hdfc-kyc-verify.xyz')">🏦 Bank phishing</span>
+        <span class="q" onclick="prefill('Congratulations! You won Rs 1,00,000 in Amazon Lucky Draw. Claim: http://amaz0n-reward.tk/claim')">🎰 Lottery scam</span>
+        <span class="q" onclick="prefill('Work from home earn Rs 5000/day. No experience. Pay Rs 999 registration fee. WhatsApp 9876543210')">💼 Job scam</span>
+        <span class="q" onclick="prefill('Your UPI transaction of Rs 500 to Swiggy is successful. Txn ID: UPI20261022-98765.')">✅ Safe SMS</span>
+        <span class="q" onclick="prefill('Your Aadhaar is linked to criminal activities. Share OTP to avoid arrest. Call 8800-XXX-XXX.')">🚨 Social eng.</span>
+      </div>
+      <div id="att" class="att"></div>
+      <form id="f">
+        <textarea id="m" placeholder="Paste a suspicious message, URL, or email here..." rows="3"></textarea>
+        <div class="btn-group">
+          <button type="submit" class="send">Scan ▶</button>
+          <button type="button" class="clip" title="Attach screenshot" onclick="document.getElementById('img').click()">📎</button>
+          <input id="img" type="file" accept="image/*" multiple hidden>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ── Right: Decisions ── -->
+  <section class="card">
+    <h2>⚡ Strands Decider 2B — Live Decisions</h2>
+    <div id="dec"><p class="empty">Policy decisions appear here in real time as the agent analyses your message.</p></div>
+    <div class="credit">Built with the <a href="https://www.awsugmdu.in" target="_blank">AWS User Group Madurai</a> Strands Decider hackathon kit</div>
+  </section>
+</main>
+
+<script>
+// ── Utilities ──────────────────────────────────────────────────────────────
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c =>
+  ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+const log = document.getElementById("log");
+const dec = document.getElementById("dec");
+
+function prefill(text) {
+  document.getElementById("m").value = text;
+  document.getElementById("m").focus();
+}
+
+// ── Fetch agent info ────────────────────────────────────────────────────────
+fetch("/api/info").then(r => r.json()).then(i => {
+  document.getElementById("meta").innerHTML =
+    `LLM: ${esc(i.llm)}<br>Decider: ${esc(i.decider)} · ${i.target === "agentcore" ? "AgentCore Runtime" : "local"}`;
+});
+
+// ── Chat ───────────────────────────────────────────────────────────────────
+function addMsg(cls, html) {
+  const d = document.createElement("div");
+  d.className = "msg " + cls;
+  d.innerHTML = html;
+  log.appendChild(d);
+  log.scrollTop = 1e9;
+  return d;
+}
+
+// ── Decision card ──────────────────────────────────────────────────────────
+function renderDecision(rec) {
+  if (dec.querySelector(".empty")) dec.innerHTML = "";
+
+  const verdict  = rec.verdict || rec.action || "";
+  const stage    = rec.stage   || rec.pattern || "decision";
+  const category = rec.category ? ` · ${esc(rec.category).replace("_"," ")}` : "";
+  const ms       = rec.decider_ms ? ` · ${rec.decider_ms} ms` : "";
+
+  // probability bars: every numeric 0–1 key that isn't a latency
+  const probKeys = Object.entries(rec).filter(([k, v]) =>
+    typeof v === "number" && v >= 0 && v <= 1 && !k.endsWith("_ms")
+  );
+
+  // rest as key:value metadata
+  const skipKeys = new Set(["verdict","action","stage","pattern","category","decider_ms","confident"]);
+  const meta = Object.entries(rec).filter(([k,v]) =>
+    !skipKeys.has(k) && !(typeof v === "number" && v >= 0 && v <= 1 && !k.endsWith("_ms"))
+  );
+
+  const barColor = v => v >= 0.65 ? "#F05252" : v >= 0.35 ? "#F6A623" : "#22D48A";
+
+  let html = "";
+
+  // Verdict banner for policy decisions
+  if (verdict === "allow" || verdict === "review" || verdict === "block") {
+    const labels = {allow:"✅ SAFE — ALLOW", review:"⚠️ SUSPICIOUS — WARN", block:"🚫 DANGER — BLOCK"};
+    html += `<div class="verdict-banner ${verdict}">${labels[verdict]}</div>`;
+  }
+
+  html += `<div class="d-head">
+    <span class="d-title">${esc(stage)}${category}</span>
+    <span class="vtag ${esc(verdict)}">${esc(verdict)}</span>
+  </div>`;
+
+  for (const [k, v] of probKeys) {
+    html += `<div class="bar-row">
+      <span title="${esc(k)}">${esc(k.replace(/_/g," "))}</span>
+      <div class="bar-wrap"><div class="bar-fill" style="width:${(v*100).toFixed(1)}%;background:${barColor(v)}"></div></div>
+      <span>${v.toFixed(2)}</span>
+    </div>`;
+  }
+
+  if (meta.length) {
+    html += `<div class="d-meta">${meta.map(([k,v]) =>
+      `<span>${esc(k)}: <strong>${esc(typeof v==="object"?JSON.stringify(v):v)}</strong></span>`
+    ).join("")}${ms ? `<span>⏱ ${esc(ms.slice(3))}</span>` : ""}</div>`;
+  }
+
+  const el = document.createElement("div");
+  el.className = "d";
+  el.innerHTML = html;
+  dec.prepend(el);
+}
+
+// ── Image attach ───────────────────────────────────────────────────────────
+let pending = [];
+const att = document.getElementById("att");
+
+document.getElementById("img").addEventListener("change", async e => {
+  for (const f of e.target.files) {
+    pending.push(await new Promise(ok => {
+      const r = new FileReader(); r.onload = () => ok(r.result); r.readAsDataURL(f);
+    }));
+  }
+  att.innerHTML = pending.map(u => `<img src="${esc(u)}" alt="screenshot">`).join("");
+  e.target.value = "";
+});
+
+// ── Submit ─────────────────────────────────────────────────────────────────
+document.getElementById("f").addEventListener("submit", async e => {
+  e.preventDefault();
+  const input  = document.getElementById("m");
+  const text   = input.value.trim();
+  if (!text && !pending.length) return;
+  input.value = "";
+
+  const images = pending.slice(); pending = []; att.innerHTML = "";
+
+  addMsg("user", images.map(u => `<img src="${esc(u)}" alt="screenshot">`).join("") + esc(text));
+  const wait = addMsg("bot", "<span class='t'>🔍 Analysing with Strands Decider 2B…</span>");
+
+  const body = JSON.stringify({ message: text || "(screenshot)", session_id: "demo", images });
+  const res  = await fetch("/api/chat", { method:"POST", headers:{"content-type":"application/json"}, body });
+  const out  = await res.json();
+
+  if (out.error) {
+    wait.innerHTML = `<span style="color:var(--red)">❌ ${esc(out.error)}</span>`;
+    return;
+  }
+
+  (out.decisions || []).forEach(renderDecision);
+
+  const n = (out.decisions || []).length;
+  const verdict = (out.decisions || [])[0]?.verdict || "";
+  const icon = {allow:"✅", review:"⚠️", block:"🚫"}[verdict] || "💬";
+  wait.innerHTML = `${icon} ${esc(out.reply)}<div class="t">${out.latency_ms} ms · ${n} decision${n===1?"":"s"}${out.served_by ? " · "+esc(out.served_by) : ""}</div>`;
+
+  document.body.dataset.turns = (+(document.body.dataset.turns||0)+1);
+});
+
+// Allow Shift+Enter for newline, Enter to submit
+document.getElementById("m").addEventListener("keydown", e => {
+  if (e.key === "Enter" && !e.shiftKey) {
+    e.preventDefault();
+    document.getElementById("f").dispatchEvent(new Event("submit", {cancelable:true}));
+  }
+});
+</script>
+</body>
+</html>

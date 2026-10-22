@@ -1,0 +1,24 @@
+# ShakthiAI ScamShield demo script.
+# Each turn is typed into the demo UI against the real agent.
+# `narrate` describes the situation only; make_video.py appends what the decider actually decided.
+title: "ShakthiAI ScamShield — Think Before You Click"
+pitch: "An AI cybersecurity agent that checks scams, phishing, and fraud before you fall victim."
+features:
+  - "paste any suspicious SMS, email, or URL to get an instant verdict"
+  - "Strands Decider 2B makes a structured ALLOW / WARN / BLOCK policy decision"
+  - "Amazon Bedrock explains the threat and gives actionable safety guidance"
+  - "uncertain messages are flagged for human review instead of being declared safe"
+  - "deployed on Amazon Bedrock AgentCore Runtime"
+eager: true
+intro: "ShakthiAI ScamShield uses Strands Decider 2B to enforce a cybersecurity policy, then Amazon Bedrock to explain the verdict. Watch as it catches a phishing message, a financial scam, and a safe transaction — and see the live decision probabilities in the panel."
+intro_normal: "ShakthiAI ScamShield runs on Amazon Bedrock AgentCore Runtime. Strands Decider 2B enforces the scam policy on every message and Amazon Bedrock explains the result."
+turns:
+  - say: "URGENT: Your HDFC Bank account will be blocked in 2 hours. Verify your KYC immediately at http://hdfc-kyc-verify.xyz or call 9999-XXXXX."
+    narrate: "A classic phishing message impersonating HDFC Bank with false urgency and a suspicious URL."
+  - say: "I received this WhatsApp message: 'Congratulations! You have been selected for Amazon Lucky Draw. You won Rs 1,00,000! Click http://amaz0n-reward.tk/claim to collect.'"
+    narrate: "A fake lottery scam impersonating Amazon with a lookalike domain."
+  - say: "Your UPI transaction of Rs 500 to Swiggy is successful. Transaction ID: UPI20261022-98765. If not done by you, call 1800-120-1740."
+    narrate: "A genuine transactional SMS from a payment service — should be allowed."
+  - say: "What should I do if I already clicked the link in a phishing message?"
+    narrate: "The user asks for recovery guidance after a potential compromise."
+outro: "One Strands Decider 2B forward pass per message. Typed answers with calibrated confidence. Amazon Bedrock for the explanation. Real decisions, not guesses."

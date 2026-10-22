@@ -1,0 +1,526 @@
+{
+ "decider_model": "strands-decider-2b-hobson-v19",
+ "rows": [
+  {
+   "i": 0,
+   "expected": {
+    "violates": "yes",
+    "category": "financial_fraud",
+    "severity": "serious"
+   },
+   "decider": {
+    "violates": {
+     "label": "yes",
+     "confidence": 0.9088
+    },
+    "category": {
+     "label": "malicious_url",
+     "confidence": 0.4521
+    },
+    "severity": {
+     "label": "critical",
+     "confidence": 0.2979
+    }
+   },
+   "decider_ms": 6152.724499930628,
+   "decider_server_ms": 5042.3,
+   "llm": {
+    "violates": {
+     "label": "yes",
+     "confidence": 1.0
+    },
+    "category": {
+     "label": "financial_fraud",
+     "confidence": 1.0
+    },
+    "severity": {
+     "label": "serious",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 1599.9079999746755,
+   "llm_cost": 0.001456
+  },
+  {
+   "i": 1,
+   "expected": {
+    "violates": "yes",
+    "category": "social_engineering",
+    "severity": "critical"
+   },
+   "decider": {
+    "violates": {
+     "label": "yes",
+     "confidence": 0.8173
+    },
+    "category": {
+     "label": "social_engineering",
+     "confidence": 0.7837
+    },
+    "severity": {
+     "label": "serious",
+     "confidence": 0.3641
+    }
+   },
+   "decider_ms": 6407.253900077194,
+   "decider_server_ms": 5609.0,
+   "llm": {
+    "violates": {
+     "label": "yes",
+     "confidence": 1.0
+    },
+    "category": {
+     "label": "social_engineering",
+     "confidence": 1.0
+    },
+    "severity": {
+     "label": "serious",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 1755.637500085868,
+   "llm_cost": 0.0015104
+  },
+  {
+   "i": 2,
+   "expected": {
+    "violates": "yes",
+    "category": "credential_theft",
+    "severity": "critical"
+   },
+   "decider": {
+    "violates": {
+     "label": "yes",
+     "confidence": 0.843
+    },
+    "category": {
+     "label": "credential_theft",
+     "confidence": 0.593
+    },
+    "severity": {
+     "label": "serious",
+     "confidence": 0.3749
+    }
+   },
+   "decider_ms": 6420.954700093716,
+   "decider_server_ms": 5494.5,
+   "llm": {
+    "violates": {
+     "label": "yes",
+     "confidence": 1.0
+    },
+    "category": {
+     "label": "credential_theft",
+     "confidence": 1.0
+    },
+    "severity": {
+     "label": "critical",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 1747.9427999351174,
+   "llm_cost": 0.0014072
+  },
+  {
+   "i": 3,
+   "expected": {
+    "violates": "yes",
+    "category": "financial_fraud",
+    "severity": "critical"
+   },
+   "decider": {
+    "violates": {
+     "label": "yes",
+     "confidence": 0.8974
+    },
+    "category": {
+     "label": "financial_fraud",
+     "confidence": 0.7288
+    },
+    "severity": {
+     "label": "critical",
+     "confidence": 0.4175
+    }
+   },
+   "decider_ms": 5988.456799997948,
+   "decider_server_ms": 5113.3,
+   "llm": {
+    "violates": {
+     "label": "yes",
+     "confidence": 1.0
+    },
+    "category": {
+     "label": "financial_fraud",
+     "confidence": 1.0
+    },
+    "severity": {
+     "label": "serious",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 1834.218299947679,
+   "llm_cost": 0.0015032000000000001
+  },
+  {
+   "i": 4,
+   "expected": {
+    "violates": "yes",
+    "category": "social_engineering",
+    "severity": "critical"
+   },
+   "decider": {
+    "violates": {
+     "label": "yes",
+     "confidence": 0.9173
+    },
+    "category": {
+     "label": "malicious_url",
+     "confidence": 0.3837
+    },
+    "severity": {
+     "label": "critical",
+     "confidence": 0.3549
+    }
+   },
+   "decider_ms": 6047.404700075276,
+   "decider_server_ms": 5067.0,
+   "llm": {
+    "violates": {
+     "label": "yes",
+     "confidence": 1.0
+    },
+    "category": {
+     "label": "phishing",
+     "confidence": 1.0
+    },
+    "severity": {
+     "label": "critical",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 1995.6238999729976,
+   "llm_cost": 0.0015552
+  },
+  {
+   "i": 5,
+   "expected": {
+    "violates": "yes",
+    "category": "phishing",
+    "severity": "serious"
+   },
+   "decider": {
+    "violates": {
+     "label": "yes",
+     "confidence": 0.5187
+    },
+    "category": {
+     "label": "phishing",
+     "confidence": 0.4837
+    },
+    "severity": {
+     "label": "serious",
+     "confidence": 0.3128
+    }
+   },
+   "decider_ms": 6364.499200019054,
+   "decider_server_ms": 5528.0,
+   "llm": {
+    "violates": {
+     "label": "yes",
+     "confidence": 1.0
+    },
+    "category": {
+     "label": "phishing",
+     "confidence": 1.0
+    },
+    "severity": {
+     "label": "critical",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 2408.3142000017688,
+   "llm_cost": 0.0017032000000000002
+  },
+  {
+   "i": 6,
+   "expected": {
+    "violates": "yes",
+    "category": "financial_fraud",
+    "severity": "serious"
+   },
+   "decider": {
+    "violates": {
+     "label": "yes",
+     "confidence": 0.726
+    },
+    "category": {
+     "label": "financial_fraud",
+     "confidence": 0.2894
+    },
+    "severity": {
+     "label": "none",
+     "confidence": 0.2917
+    }
+   },
+   "decider_ms": 5722.479999996722,
+   "decider_server_ms": 4891.5,
+   "llm": {
+    "violates": {
+     "label": "yes",
+     "confidence": 1.0
+    },
+    "category": {
+     "label": "malicious_url",
+     "confidence": 1.0
+    },
+    "severity": {
+     "label": "serious",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 2390.4846999794245,
+   "llm_cost": 0.0017184
+  },
+  {
+   "i": 7,
+   "expected": {
+    "violates": "no",
+    "category": "safe",
+    "severity": "none"
+   },
+   "decider": {
+    "violates": {
+     "label": "no",
+     "confidence": 0.7987
+    },
+    "category": {
+     "label": "safe",
+     "confidence": 0.667
+    },
+    "severity": {
+     "label": "none",
+     "confidence": 0.3906
+    }
+   },
+   "decider_ms": 6815.954799996689,
+   "decider_server_ms": 5586.9,
+   "llm": {
+    "violates": {
+     "label": "no",
+     "confidence": 1.0
+    },
+    "category": {
+     "label": "safe",
+     "confidence": 1.0
+    },
+    "severity": {
+     "label": "none",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 1971.1774999741465,
+   "llm_cost": 0.0014728000000000002
+  },
+  {
+   "i": 8,
+   "expected": {
+    "violates": "yes",
+    "category": "financial_fraud",
+    "severity": "minor"
+   },
+   "decider": {
+    "violates": {
+     "label": "yes",
+     "confidence": 0.7275
+    },
+    "category": {
+     "label": "financial_fraud",
+     "confidence": 0.4692
+    },
+    "severity": {
+     "label": "critical",
+     "confidence": 0.3628
+    }
+   },
+   "decider_ms": 6430.421199998818,
+   "decider_server_ms": 5559.8,
+   "llm": {
+    "violates": {
+     "label": "yes",
+     "confidence": 0.95
+    },
+    "category": {
+     "label": "job_scam",
+     "confidence": 0.95
+    },
+    "severity": {
+     "label": "serious",
+     "confidence": 0.9
+    }
+   },
+   "llm_ms": 2624.971400015056,
+   "llm_cost": 0.0017352000000000001
+  },
+  {
+   "i": 9,
+   "expected": {
+    "violates": "yes",
+    "category": "phishing",
+    "severity": "serious"
+   },
+   "decider": {
+    "violates": {
+     "label": "yes",
+     "confidence": 0.6022
+    },
+    "category": {
+     "label": "malicious_url",
+     "confidence": 0.311
+    },
+    "severity": {
+     "label": "serious",
+     "confidence": 0.313
+    }
+   },
+   "decider_ms": 5693.584900000133,
+   "decider_server_ms": 4951.3,
+   "llm": {
+    "violates": {
+     "label": "yes",
+     "confidence": 1.0
+    },
+    "category": {
+     "label": "phishing",
+     "confidence": 1.0
+    },
+    "severity": {
+     "label": "critical",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 1861.7429999867454,
+   "llm_cost": 0.0015544
+  },
+  {
+   "i": 10,
+   "expected": {
+    "violates": "yes",
+    "category": "credential_theft",
+    "severity": "critical"
+   },
+   "decider": {
+    "violates": {
+     "label": "yes",
+     "confidence": 0.9239
+    },
+    "category": {
+     "label": "phishing",
+     "confidence": 0.5067
+    },
+    "severity": {
+     "label": "critical",
+     "confidence": 0.3358
+    }
+   },
+   "decider_ms": 5702.21739995759,
+   "decider_server_ms": 4987.4,
+   "llm": {
+    "violates": {
+     "label": "yes",
+     "confidence": 1.0
+    },
+    "category": {
+     "label": "malicious_url",
+     "confidence": 1.0
+    },
+    "severity": {
+     "label": "critical",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 1486.7526999441907,
+   "llm_cost": 0.001408
+  },
+  {
+   "i": 11,
+   "expected": {
+    "violates": "yes",
+    "category": "job_scam",
+    "severity": "serious"
+   },
+   "decider": {
+    "violates": {
+     "label": "no",
+     "confidence": 0.6169
+    },
+    "category": {
+     "label": "job_scam",
+     "confidence": 0.3617
+    },
+    "severity": {
+     "label": "serious",
+     "confidence": 0.3324
+    }
+   },
+   "decider_ms": 6363.126100040972,
+   "decider_server_ms": 5631.1,
+   "llm": {
+    "violates": {
+     "label": "yes",
+     "confidence": 0.95
+    },
+    "category": {
+     "label": "job_scam",
+     "confidence": 0.95
+    },
+    "severity": {
+     "label": "serious",
+     "confidence": 0.95
+    }
+   },
+   "llm_ms": 2965.935599990189,
+   "llm_cost": 0.0019320000000000001
+  }
+ ],
+ "summary": {
+  "decider": {
+   "accuracy": 0.7222,
+   "decisions": 36,
+   "per_question": {
+    "violates": 0.9167,
+    "category": 0.6667,
+    "severity": 0.5833
+   },
+   "latency_p50_ms": 6363.1,
+   "latency_p95_ms": 6430.4,
+   "usd_per_1k_decisions": 0.035,
+   "confident_share": 0.3056,
+   "accuracy_when_confident": 1.0,
+   "sent_to_human_at_threshold": 25
+  },
+  "llm": {
+   "accuracy": 0.75,
+   "decisions": 36,
+   "per_question": {
+    "violates": 1.0,
+    "category": 0.6667,
+    "severity": 0.5833
+   },
+   "latency_p50_ms": 1971.2,
+   "latency_p95_ms": 2625.0,
+   "usd_per_1k_decisions": 0.5266,
+   "confident_share": 1.0,
+   "accuracy_when_confident": 0.75,
+   "sent_to_human_at_threshold": 0
+  },
+  "speedup_p50": 0.31
+ },
+ "threshold": 0.7,
+ "llm_model": "apac.amazon.nova-pro-v1:0",
+ "llm_provider": "bedrock",
+ "llm_where": "Amazon Bedrock (apac.amazon.nova-pro-v1:0)",
+ "decider_url": "https://da25tnxy06gjk.cloudfront.net",
+ "decider_mode": "ugmdu",
+ "ran_at": 1792658569.7168348,
+ "split": "test"
+}

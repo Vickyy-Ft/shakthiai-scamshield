@@ -1,0 +1,1 @@
+# ShakthiAI ScamShield — package marker
